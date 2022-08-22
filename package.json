@@ -1,0 +1,19 @@
+{
+  "name": "kext-downloader",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "electron": "^20.0.2",
+    "jquery": "^3.6.0"
+  },
+  "devDependencies": {
+    "electron-packager": "^15.5.1"
+  }
+}

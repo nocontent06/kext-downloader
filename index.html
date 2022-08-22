@@ -1,0 +1,2074 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="./src/css/main.css">
+    <link rel="stylesheet" href="./src/css/font.css">
+
+    <script>window.$ = window.jQuery = require('jquery');</script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script>
+        jQuery(document).ready (function () {
+            jQuery.getJSON("https://api.github.com/repos/mongodb/mongo/tags").done(function (data) {
+                jQuery('#mongodb-download').attr ('href', data[0].zipball_url); 
+            })
+        });
+    </script>
+    <title>Kext Downloader</title>
+</head>
+<body>
+    
+    <h1 class="center">Kext Downloader</h1>
+    <!-- <button onclick="changeTheme()" id="cTButton">Change Theme</button> -->
+    <script src="./src/js/changeTheme.js"></script>
+    <select id="select_kext" class="dropdown" onchange="onChangeUpdate()">
+        <option value="" selected>Select a Kext...</option>
+        <optgroup label="Kext">
+            <option class="dropdown-item" value="AirportBrcmFixup">AirportBrcmFixup</option>
+            <option class="dropdown-item" value="AppleALC">AppleALC</option>
+            <option class="dropdown-item" value="BT4LEContinuityFixup">BT4LEContinuityFixup</option>
+            <option class="dropdown-item" value="BrcmPatchRAM">BrcmPatchRAM</option>
+            <option class="dropdown-item" value="BrightnessKeys">BrightnessKeys</option>
+            <option class="dropdown-item" value="CPUFriend">CPUFriend</option>
+            <option class="dropdown-item" value="CpuTopologySync">CpuTopologySync</option>
+            <option class="dropdown-item" value="CpuTscSync">CpuTscSync</option>
+            <option class="dropdown-item" value="DebugEnhancer">DebugEnhancer</option>
+            <option class="dropdown-item" value="ECEnabler">ECEnabler</option>
+            <option class="dropdown-item" value="FeatureUnlock">FeatureUnlock</option>
+            <option class="dropdown-item" value="HibernationFixup">HibernationFixup</option>
+            <option class="dropdown-item" value="IntelBluetoothFirmware">IntelBluetoothFirmware</option>
+            <option class="dropdown-item" value="IntelMausi">IntelMausi</option>
+            <option class="dropdown-item" value="Lilu">Lilu</option>
+            <option class="dropdown-item" value="MacHyperVSupport">MacHyperVSupport</option>
+            <option class="dropdown-item" value="NVMeFix">NVMeFix</option>
+            <option class="dropdown-item" value="NoTouchID">NoTouchID</option>
+            <option class="dropdown-item" value="RTCMemoryFixup">RTCMemoryFixup</option>
+            <option class="dropdown-item" value="RealtekRTL8111">RealtekRTL8111</option>
+            <option class="dropdown-item" value="RestrictEvents">RestrictEvents</option>
+            <option class="dropdown-item" value="UEFIGraphicsFB">UEFIGraphicsFB</option>
+            <option class="dropdown-item" value="VirtualSMC">VirtualSMC</option>
+            <option class="dropdown-item" value="VoodooI2C">VoodooI2C</option>
+            <option class="dropdown-item" value="VoodooInput">VoodooInput</option>
+            <option class="dropdown-item" value="VoodooPS2">VoodooPS2</option>
+            <option class="dropdown-item" value="VoodooPS2-Alps">VoodooPS2-Alps</option>
+            <option class="dropdown-item" value="VoodooRMI">VoodooRMI</option>
+            <option class="dropdown-item" value="WhateverGreen">WhateverGreen</option>
+        </optgroup>
+        <option value="OpenCorePkg" class="dropdown-item">OpenCorePkg</option>
+        </select>
+    <select id="select_branche" onchange="onChangeBranche()">
+        <option value="" selected>Select Branche</option>
+        <option value="stable">Stable</option>
+        <option value="beta" id="val_beta">Beta</option>
+    </select>
+    </div>
+
+    <table id="AirportBrcmFixupTable" class="" style="display: none; width: 100%; margin-top: 40px;">
+    <!-- <tr id="ABFTLatest" class="tr">
+        <td class="center" style="width: 33%;">
+            <b class="center">Latest</b>
+        </td>
+        <td class="center" style="width: 33%;">
+            <a href="#"><b >Debug</b></a>
+        </td>
+        <td class="center" style="width: 33%;">
+            <a href="#"><b>Release</b></a>
+        </td>
+    </tr> -->
+    <tr id="ABFT217" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">2.1.7 (Beta)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/dortania/build-repo/releases/download/AirportBrcmFixup-712c1da/AirportBrcmFixup-2.1.7-DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/dortania/build-repo/releases/download/AirportBrcmFixup-712c1da/AirportBrcmFixup-2.1.7-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="ABFT216">
+        <td class="center td" style="width: 33%;">
+            <b class="center">2.1.6 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AirportBrcmFixup/releases/download/2.1.6/AirportBrcmFixup-2.1.6-DEBUG.zip"><b >Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AirportBrcmFixup/releases/download/2.1.6/AirportBrcmFixup-2.1.6-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="ABFT215">
+        <td class="center td" style="width: 33%;">
+            <b class="center">2.1.5 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AirportBrcmFixup/releases/download/2.1.5/AirportBrcmFixup-2.1.5-DEBUG.zip"><b >Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AirportBrcmFixup/releases/download/2.1.5/AirportBrcmFixup-2.1.5-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="ABFT214">
+        <td class="center td" style="width: 33%;">
+            <b class="center">2.1.4 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AirportBrcmFixup/releases/download/2.1.4/AirportBrcmFixup-2.1.4-DEBUG.zip"><b >Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AirportBrcmFixup/releases/download/2.1.4/AirportBrcmFixup-2.1.4-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="ABFT213">
+        <td class="center td" style="width: 33%;">
+            <b class="center">2.1.3 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AirportBrcmFixup/releases/download/2.1.3/AirportBrcmFixup-2.1.3-DEBUG.zip"><b >Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AirportBrcmFixup/releases/download/2.1.3/AirportBrcmFixup-2.1.3-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="ABFT213">
+        <td class="center td" style="width: 33%;">
+            <b class="center">2.1.2 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AirportBrcmFixup/releases/download/2.1.2/AirportBrcmFixup-2.1.2-DEBUG.zip"><b >Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AirportBrcmFixup/releases/download/2.1.2/AirportBrcmFixup-2.1.2-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="ABFT213">
+        <td class="center td" style="width: 33%;">
+            <b class="center">2.1.1 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AirportBrcmFixup/releases/download/2.1.1/AirportBrcmFixup-2.1.1-DEBUG.zip"><b >Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AirportBrcmFixup/releases/download/2.1.1/AirportBrcmFixup-2.1.1-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="ABFT213">
+        <td class="center td" style="width: 33%;">
+            <b class="center">2.1.0 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AirportBrcmFixup/releases/download/2.1.0/AirportBrcmFixup-2.1.0-DEBUG.zip"><b >Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AirportBrcmFixup/releases/download/2.1.0/AirportBrcmFixup-2.1.0-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="ABFT213">
+        <td class="center td" style="width: 33%;">
+            <b class="center">2.0.9 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AirportBrcmFixup/releases/download/2.0.9/AirportBrcmFixup-2.0.9-DEBUG.zip"><b >Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AirportBrcmFixup/releases/download/2.0.9/AirportBrcmFixup-2.0.9-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="ABFT213">
+        <td class="center td" style="width: 33%;">
+            <b class="center">2.0.8 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AirportBrcmFixup/releases/download/2.0.8/AirportBrcmFixup-2.0.8-DEBUG.zip"><b >Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AirportBrcmFixup/releases/download/2.0.8/AirportBrcmFixup-2.0.8-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="ABFT213">
+        <td class="center td" style="width: 33%;">
+            <b class="center">2.0.7 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AirportBrcmFixup/releases/download/2.0.7/AirportBrcmFixup-2.0.7-DEBUG.zip"><b >Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AirportBrcmFixup/releases/download/2.0.7/AirportBrcmFixup-2.0.7-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="ABFT213">
+        <td class="center td" style="width: 33%;">
+            <b class="center">2.0.6 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AirportBrcmFixup/releases/download/2.0.6/AirportBrcmFixup-2.0.6-DEBUG.zip"><b >Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AirportBrcmFixup/releases/download/2.0.6/AirportBrcmFixup-2.0.6-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="ABFT213">
+        <td class="center td" style="width: 33%;">
+            <b class="center">2.0.5 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AirportBrcmFixup/releases/download/2.0.5/AirportBrcmFixup-2.0.5-DEBUG.zip"><b >Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AirportBrcmFixup/releases/download/2.0.5/AirportBrcmFixup-2.0.5-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="ABFT213">
+        <td class="center td" style="width: 33%;">
+            <b class="center">2.0.4 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AirportBrcmFixup/releases/download/2.0.4/AirportBrcmFixup-2.0.4-DEBUG.zip"><b >Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AirportBrcmFixup/releases/download/2.0.4/AirportBrcmFixup-2.0.4-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="ABFT213">
+        <td class="center td" style="width: 33%;">
+            <b class="center">2.0.3 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AirportBrcmFixup/releases/download/2.0.3/AirportBrcmFixup-2.0.3-DEBUG.zip"><b >Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AirportBrcmFixup/releases/download/2.0.3/AirportBrcmFixup-2.0.3-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="ABFT213">
+        <td class="center td" style="width: 33%;">
+            <b class="center">2.0.2 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AirportBrcmFixup/releases/download/2.0.2/2.0.2.DEBUG.zip"><b >Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AirportBrcmFixup/releases/download/2.0.2/2.0.2.RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="ABFT213">
+        <td class="center td" style="width: 33%;">
+            <b class="center">2.0.0 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AirportBrcmFixup/releases/download/2.0.0/2.0.0.DEBUG.zip"><b >Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AirportBrcmFixup/releases/download/2.0.0/2.0.0.RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="ABFT213">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.1.9 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AirportBrcmFixup/releases/download/1.1.9/1.1.9.DEBUG.zip"><b >Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AirportBrcmFixup/releases/download/1.1.9/1.1.9.RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="ABFT213">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.1.8 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AirportBrcmFixup/releases/download/1.1.8/1.1.8.DEBUG.zip"><b >Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AirportBrcmFixup/releases/download/1.1.8/1.1.8.RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="ABFT213">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.1.7 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AirportBrcmFixup/releases/download/1.1.7/1.1.7.DEBUG.zip"><b >Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AirportBrcmFixup/releases/download/1.1.7/1.1.7.RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="ABFT213">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.1.6 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AirportBrcmFixup/releases/download/v1.1.6/1.1.6.DEBUG.zip"><b >Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AirportBrcmFixup/releases/download/v1.1.6/1.1.6.RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="ABFT213">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.1.5 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AirportBrcmFixup/releases/download/1.1.5/1.1.5.DEBUG.zip"><b >Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AirportBrcmFixup/releases/download/1.1.5/1.1.5.RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="ABFT213">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.1.4 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AirportBrcmFixup/releases/download/v1.1.4/1.1.4.DEBUG.zip"><b >Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AirportBrcmFixup/releases/download/v1.1.4/1.1.4.RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="ABFT213">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.1.3 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AirportBrcmFixup/releases/download/v1.1.3/1.1.3.DEBUG.zip"><b >Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AirportBrcmFixup/releases/download/v1.1.3/1.1.3.RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="ABFT213">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.1.2 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AirportBrcmFixup/releases/download/v1.1.2/1.1.2.DEBUG.zip"><b >Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AirportBrcmFixup/releases/download/v1.1.2/1.1.2.RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="ABFT213">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.1.1 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AirportBrcmFixup/releases/download/v1.1.1/1.1.1.DEBUG.zip"><b >Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AirportBrcmFixup/releases/download/v1.1.1/1.1.1.RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    </table>
+    <table id="AppleALCTable" style="display: none; width: 100%; margin-top: 40px;">
+    <tr id="AALCT175" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.7.5 (Beta)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/dortania/build-repo/releases/download/AppleALC-eb1b52d/AppleALC-1.7.5-DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/dortania/build-repo/releases/download/AppleALC-eb1b52d/AppleALC-1.7.5-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT174" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.7.4 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.7.4/AppleALC-1.7.4-DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.7.4/AppleALC-1.7.4-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.7.3 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.7.3/AppleALC-1.7.3-DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.7.3/AppleALC-1.7.3-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.7.2 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.7.2/AppleALC-1.7.2-DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.7.2/AppleALC-1.7.2-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.7.1 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.7.1/AppleALC-1.7.1-DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.7.1/AppleALC-1.7.1-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.7.0 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.7.0/AppleALC-1.7.0-DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.7.0/AppleALC-1.7.0-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.6.9 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.6.9/AppleALC-1.6.9-DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.6.9/AppleALC-1.6.9-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.6.8 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.6.8/AppleALC-1.6.8-DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.6.8/AppleALC-1.6.8-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.6.7 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.6.7/AppleALC-1.6.7-DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.6.7/AppleALC-1.6.7-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.6.6 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.6.6/AppleALC-1.6.6-DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.6.6/AppleALC-1.6.6-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.6.5 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.6.5/AppleALC-1.6.5-DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.6.5/AppleALC-1.6.5-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.6.4 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.6.4/AppleALC-1.6.4-DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.6.4/AppleALC-1.6.4-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.6.3 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.6.3/AppleALC-1.6.3-DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.6.3/AppleALC-1.6.3-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.6.2 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.6.2/AppleALC-1.6.2-DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.6.2/AppleALC-1.6.2-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.6.1 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.6.1/AppleALC-1.6.1-DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.6.1/AppleALC-1.6.1-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.6.0 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.6.0/AppleALC-1.6.0-DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.6.0/AppleALC-1.6.0-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.5.9 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.5.9/AppleALC-1.5.9-DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.5.9/AppleALC-1.5.9-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.5.8 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.5.8/AppleALC-1.5.8-DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.5.8/AppleALC-1.5.8-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.5.7 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.5.7/AppleALC-1.5.7-DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.5.7/AppleALC-1.5.7-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.5.6 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.5.6/AppleALC-1.5.6-DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.5.6/AppleALC-1.5.6-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.5.5 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.5.5/AppleALC-1.5.5-DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.5.5/AppleALC-1.5.5-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.5.4 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.5.4/AppleALC-1.5.4-DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.5.4/AppleALC-1.5.4-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.5.3 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.5.3/AppleALC-1.5.3-DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.5.3/AppleALC-1.5.3-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.5.2 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.5.2/AppleALC-1.5.2-DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.5.2/AppleALC-1.5.2-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.5.1 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.5.1/AppleALC-1.5.1-DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.5.1/AppleALC-1.5.1-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.5.0 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.5.0/AppleALC-1.5.0-DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.5.0/AppleALC-1.5.0-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.4.9 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.4.9/AppleALC-1.4.9-DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.4.9/AppleALC-1.4.9-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.4.8 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.4.8/AppleALC-1.4.8-DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.4.8/AppleALC-1.4.8-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.4.7 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.4.7/AppleALC-1.4.7-DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.4.7/AppleALC-1.4.7-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.4.6 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.4.6/AppleALC-1.4.6-DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.4.6/AppleALC-1.4.6-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.4.5 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.4.5/AppleALC-1.4.5-DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.4.5/AppleALC-1.4.5-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.4.4 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.4.4/AppleALC-1.4.4-DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.4.4/AppleALC-1.4.4-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.4.3 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.4.3/AppleALC-1.4.3-DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.4.3/AppleALC-1.4.3-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.4.2 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.4.2/AppleALC-1.4.2-DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.4.2/AppleALC-1.4.2-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.4.1 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.4.1/AppleALC-1.4.1-DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.4.1/AppleALC-1.4.1-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.4.0 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.4.0/AppleALC-1.4.0-DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.4.0/AppleALC-1.4.0-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.3.9 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.3.9/1.3.9.DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.3.9/1.3.9.RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.3.8 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.3.8/1.3.8.DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.3.8/1.3.8.RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.3.7 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.3.7/1.3.7.DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.3.7/1.3.7.RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.3.6 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.3.6/1.3.6.DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.3.6/1.3.6.RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.3.5 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.3.5/1.3.5.DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.3.5/1.3.5.RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.3.4 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.3.4/1.3.4.DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.3.4/1.3.4.RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.3.3 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.3.3/1.3.3.DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.3.3/1.3.3.RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.3.2 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.3.2/1.3.2.DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.3.2/1.3.2.RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.3.1 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.3.1/1.3.1.DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.3.1/1.3.1.RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.3.0 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.3.0/1.3.0.DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.3.0/1.3.0.RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.2.8 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.2.8/1.2.8.DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.2.8/1.2.8.RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.2.7 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.2.7/1.2.7.DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.2.7/1.2.7.RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.2.6 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.2.6/1.2.6.DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.2.6/1.2.6.RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.2.4 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.2.4/1.2.4.DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.2.4/1.2.4.RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.2.3 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.2.3/1.2.3.DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.2.3/1.2.3.RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.2.2 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.2.2/1.2.2.DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.2.2/1.2.2.RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.2.1 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.2.1/1.2.1.DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.2.1/1.2.1.RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.2.0 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.2.0/1.2.0.DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.2.0/1.2.0.RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.1.4 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.1.4/1.1.4.DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.1.4/1.1.4.RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.1.3 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.1.3/1.1.3.DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.1.3/1.1.3.RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.1.2 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.1.2/1.1.2.DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.1.2/1.1.2.RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.1.1 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.1.1/1.1.1.DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.1.1/1.1.1.RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.1.0 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.1.0/1.1.0.DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.1.0/1.1.0.RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.0.19 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.0.19/1.0.19.DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.0.19/1.0.19.RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.0.18 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.0.18/1.0.18.DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.0.18/1.0.18.RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.0.17 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.0.17/1.0.17.DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.0.17/1.0.17.RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.0.16 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.0.16/1.0.16.DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.0.16/1.0.16.RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.0.15 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.0.15/1.0.15.DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.0.15/1.0.15.RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.0.14 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.0.14/1.0.14.DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.0.14/1.0.14.RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.0.13 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.0.13/1.0.13.DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.0.13/1.0.13.RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.0.12 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.0.12/1.0.12.DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.0.12/1.0.12.RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.0.11 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.0.11/1.0.11.DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.0.11/1.0.11.RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.0.10 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.0.10/1.0.10.DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.0.10/1.0.10.RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.0.9 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.0.9/1.0.9.DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.0.9/1.0.9.RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.0.8 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.0.8/1.0.8.DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.0.8/1.0.8.RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.0.7 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.0.7/1.0.7.DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.0.7/1.0.7.RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.0.6 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.0.6/1.0.6.DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.0.6/1.0.6.RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.0.5 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.0.5/1.0.5.DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.0.5/1.0.5.RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.0.4 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.0.4/1.0.4.DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.0.4/1.0.4.RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.0.3 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.0.3/1.0.3.DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.0.3/1.0.3.RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.0.2 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.0.2/1.0.2.DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.0.2/1.0.2.RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="AALCT173" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.0.1 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.0.1/1.0.1.DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/AppleALC/releases/download/1.0.1/1.0.1.RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    </table>
+    <table id="BT4LEContinuityFixupTable" style="display: none; width: 100%; margin-top: 40px;">
+    <tr id="BT4LECF116" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.1.6 (Beta)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/dortania/build-repo/releases/download/BT4LEContinuityFixup-81d2643/BT4LEContinuityFixup-1.1.6-DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/dortania/build-repo/releases/download/BT4LEContinuityFixup-81d2643/BT4LEContinuityFixup-1.1.6-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="BT4LECF115" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.1.5 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/BT4LEContinuityFixup/releases/download/1.1.5/BT4LEContinuityFixup-1.1.5-DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/BT4LEContinuityFixup/releases/download/1.1.5/BT4LEContinuityFixup-1.1.5-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="BT4LECF114" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.1.4 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/BT4LEContinuityFixup/releases/download/1.1.4/BT4LEContinuityFixup-1.1.4-DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/BT4LEContinuityFixup/releases/download/1.1.4/BT4LEContinuityFixup-1.1.4-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="BT4LECF115" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.1.3 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/BT4LEContinuityFixup/releases/download/1.1.3/1.1.3.DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/BT4LEContinuityFixup/releases/download/1.1.3/1.1.3.RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="BT4LECF115" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.1.2 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/BT4LEContinuityFixup/releases/download/1.1.2/1.1.2.DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/BT4LEContinuityFixup/releases/download/1.1.2/1.1.2.RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="BT4LECF115" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.1.1 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/BT4LEContinuityFixup/releases/download/1.1.1/1.1.1.DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/BT4LEContinuityFixup/releases/download/1.1.1/1.1.1.RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    </table>
+    <table id="BrcmPatchRAMTable" style="display: none; width: 100%; margin-top: 40px;">
+    <tr id="BPRAM264" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">2.6.4 (Beta)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/dortania/build-repo/releases/download/BrcmPatchRAM-b12378c/BrcmPatchRAM-2.6.4-DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/dortania/build-repo/releases/download/BrcmPatchRAM-b12378c/BrcmPatchRAM-2.6.4-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="BPRAM263" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">2.6.3 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/BrcmPatchRAM/releases/download/2.6.3/BrcmPatchRAM-2.6.3-DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/BrcmPatchRAM/releases/download/2.6.3/BrcmPatchRAM-2.6.3-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="BPRAM263" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">2.6.3 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/BrcmPatchRAM/releases/download/2.6.3/BrcmPatchRAM-2.6.3-DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/BrcmPatchRAM/releases/download/2.6.3/BrcmPatchRAM-2.6.3-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="BPRAM263" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">2.6.2 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/BrcmPatchRAM/releases/download/2.6.2/BrcmPatchRAM-2.6.2-DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/BrcmPatchRAM/releases/download/2.6.2/BrcmPatchRAM-2.6.2-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="BPRAM263" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">2.6.1 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/BrcmPatchRAM/releases/download/2.6.1/BrcmPatchRAM-2.6.1-DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/BrcmPatchRAM/releases/download/2.6.1/BrcmPatchRAM-2.6.1-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="BPRAM263" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">2.6.0 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/BrcmPatchRAM/releases/download/2.6.0/BrcmPatchRAM-2.6.0-DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/BrcmPatchRAM/releases/download/2.6.0/BrcmPatchRAM-2.6.0-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="BPRAM263" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">2.5.9 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/BrcmPatchRAM/releases/download/2.5.9/BrcmPatchRAM-2.5.9-DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/BrcmPatchRAM/releases/download/2.5.9/BrcmPatchRAM-2.5.9-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="BPRAM263" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">2.5.8 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/BrcmPatchRAM/releases/download/2.5.8/BrcmPatchRAM-2.5.8-DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/BrcmPatchRAM/releases/download/2.5.8/BrcmPatchRAM-2.5.8-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="BPRAM263" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">2.5.7 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/BrcmPatchRAM/releases/download/2.5.7/BrcmPatchRAM-2.5.7-DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/BrcmPatchRAM/releases/download/2.5.7/BrcmPatchRAM-2.5.7-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="BPRAM263" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">2.5.6 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/BrcmPatchRAM/releases/download/2.5.6/BrcmPatchRAM-2.5.6-DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/BrcmPatchRAM/releases/download/2.5.6/BrcmPatchRAM-2.5.6-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="BPRAM263" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">2.5.5 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/BrcmPatchRAM/releases/download/2.5.5/BrcmPatchRAM-2.5.5-DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/BrcmPatchRAM/releases/download/2.5.5/BrcmPatchRAM-2.5.5-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="BPRAM263" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">2.5.4 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/BrcmPatchRAM/releases/download/2.5.4/BrcmPatchRAM-2.5.4-DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/BrcmPatchRAM/releases/download/2.5.4/BrcmPatchRAM-2.5.4-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="BPRAM263" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">2.5.3 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/BrcmPatchRAM/releases/download/2.5.3/BrcmPatchRAM-2.5.3-DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/BrcmPatchRAM/releases/download/2.5.3/BrcmPatchRAM-2.5.3-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="BPRAM263" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">2.5.2 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/BrcmPatchRAM/releases/download/2.5.2/BrcmPatchRAM-2.5.2-DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/BrcmPatchRAM/releases/download/2.5.2/BrcmPatchRAM-2.5.2-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="BPRAM263" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">2.5.1 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/BrcmPatchRAM/releases/download/2.5.1/BrcmPatchRAM-2.5.1-DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/BrcmPatchRAM/releases/download/2.5.1/BrcmPatchRAM-2.5.1-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    </table>
+    <table id="BrightnessKeysTable" style="display: none; width: 100%; margin-top: 40px;">
+    <tr id="BK103" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.0.3 (Beta)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/dortania/build-repo/releases/download/BrightnessKeys-4eda6c1/BrightnessKeys-1.0.3-DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/dortania/build-repo/releases/download/BrightnessKeys-4eda6c1/BrightnessKeys-1.0.3-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="BK102" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.0.2 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/BrightnessKeys/releases/download/1.0.2/BrightnessKeys-1.0.2-DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/BrightnessKeys/releases/download/1.0.2/BrightnessKeys-1.0.2-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="BK101" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.0.1 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/BrightnessKeys/releases/download/1.0.1/BrightnessKeys-1.0.1-DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/BrightnessKeys/releases/download/1.0.1/BrightnessKeys-1.0.1-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="BK100" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.0.0 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/BrightnessKeys/releases/download/1.0.0/BrightnessKeys-1.0.0-DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/BrightnessKeys/releases/download/1.0.0/BrightnessKeys-1.0.0-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    </table>
+    <table id="CPUFriendTable" style="display: none; width: 100%; margin-top: 40px;">
+    <tr id="CF127" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.2.7 (Beta)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/dortania/build-repo/releases/download/CPUFriend-54f861c/CPUFriend-1.2.7-DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/dortania/build-repo/releases/download/CPUFriend-54f861c/CPUFriend-1.2.7-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    <tr id="CF126" class="tr">
+        <td class="center td" style="width: 33%;">
+            <b class="center">1.2.6 (Stable)</b>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/CPUFriend/releases/download/1.2.6/CPUFriend-1.2.6-DEBUG.zip"><b>Debug</b></a>
+        </td>
+        <td class="center td" style="width: 33%;">
+            <a href="https://github.com/acidanthera/CPUFriend/releases/download/1.2.6/CPUFriend-1.2.6-RELEASE.zip"><b>Release</b></a>
+        </td>
+    </tr>
+    </table>
+    <table id="CPUTopologySyncTable" style="display: none; width: 100%; margin-top: 40px;">
+        <tr id="CTS101" class="tr">
+            <td class="center td" style="width: 33%;">
+                <b class="center">1.0.1 (Beta)</b>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/dortania/build-repo/releases/download/CpuTopologySync-b2ce261/CpuTopologySync-1.0.1-DEBUG.zip"><b>Debug</b></a>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/dortania/build-repo/releases/download/CpuTopologySync-b2ce261/CpuTopologySync-1.0.1-RELEASE.zip"><b>Release</b></a>
+            </td>
+        </tr>
+        <tr id="CTS100" class="tr">
+            <td class="center td" style="width: 33%;">
+                <b class="center">1.0.0 (Stable)</b>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/acidanthera/CpuTopologySync/releases/download/1.0.0/CpuTopologySync-1.0.0-DEBUG.zip"><b>Debug</b></a>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/acidanthera/CpuTopologySync/releases/download/1.0.0/CpuTopologySync-1.0.0-RELEASE.zip"><b>Release</b></a>
+            </td>
+        </tr>
+    </table>
+    <table id="CPUTscSyncTable" style="display: none; width: 100%; margin-top: 40px;">
+        <tr id="CTscS110" class="tr">
+            <td class="center td" style="width: 33%;">
+                <b class="center">1.1.0 (Beta)</b>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/dortania/build-repo/releases/download/CpuTscSync-d74fcb8/CpuTscSync-1.1.0-DEBUG.zip"><b>Debug</b></a>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/dortania/build-repo/releases/download/CpuTscSync-d74fcb8/CpuTscSync-1.1.0-RELEASE.zip"><b>Release</b></a>
+            </td>
+        </tr>
+        <tr id="CTscS109" class="tr">
+            <td class="center td" style="width: 33%;">
+                <b class="center">1.0.9 (Stable)</b>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/acidanthera/CpuTscSync/releases/download/1.0.9/CpuTscSync-1.0.9-DEBUG.zip"><b>Debug</b></a>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/acidanthera/CpuTscSync/releases/download/1.0.9/CpuTscSync-1.0.9-RELEASE.zip"><b>Release</b></a>
+            </td>
+        </tr>
+    </table>
+    <table id="DebugEnhancerTable" style="display: none; width: 100%; margin-top: 40px;">
+        <tr id="DE108" class="tr">
+            <td class="center td" style="width: 33%;">
+                <b class="center">1.0.8 (Beta)</b>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/dortania/build-repo/releases/download/DebugEnhancer-602510b/DebugEnhancer-1.0.8-DEBUG.zip"><b>Debug</b></a>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/dortania/build-repo/releases/download/DebugEnhancer-602510b/DebugEnhancer-1.0.8-RELEASE.zip"><b>Release</b></a>
+            </td>
+        </tr>
+        <tr id="DE107" class="tr">
+            <td class="center td" style="width: 33%;">
+                <b class="center">1.0.7 (Stable)</b>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/acidanthera/DebugEnhancer/releases/download/1.0.7/DebugEnhancer-1.0.7-DEBUG.zip"><b>Debug</b></a>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/acidanthera/DebugEnhancer/releases/download/1.0.7/DebugEnhancer-1.0.7-RELEASE.zip"><b>Release</b></a>
+            </td>
+        </tr>
+    </table>
+    <table id="ECEnablerTable" style="display: none; width: 100%; margin-top: 40px;">
+        <tr id="ECE103" class="tr">
+            <td class="center td" style="width: 33%;">
+                <b class="center">1.0.3 (Stable)</b>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/1Revenger1/ECEnabler/releases/download/1.0.3/ECEnabler-1.0.3-DEBUG.zip"><b>Debug</b></a>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/1Revenger1/ECEnabler/releases/download/1.0.3/ECEnabler-1.0.3-RELEASE.zip"><b>Release</b></a>
+            </td>
+        </tr>
+    </table>
+    <table id="FeatureUnlockTable" style="display: none; width: 100%; margin-top: 40px;">
+        <tr id="FU110" class="tr">
+            <td class="center td" style="width: 33%;">
+                <b class="center">1.1.0 (Beta)</b>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/dortania/build-repo/releases/download/FeatureUnlock-0a44b99/FeatureUnlock-1.1.0-DEBUG.zip"><b>Debug</b></a>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/dortania/build-repo/releases/download/FeatureUnlock-0a44b99/FeatureUnlock-1.1.0-RELEASE.zip"><b>Release</b></a>
+            </td>
+        </tr>
+        <tr id="FU109" class="tr">
+            <td class="center td" style="width: 33%;">
+                <b class="center">1.0.9 (Stable)</b>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/acidanthera/FeatureUnlock/releases/download/1.0.9/FeatureUnlock-1.0.9-DEBUG.zip"><b>Debug</b></a>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/acidanthera/FeatureUnlock/releases/download/1.0.9/FeatureUnlock-1.0.9-RELEASE.zip"><b>Release</b></a>
+            </td>
+        </tr>
+    </table>
+    <table id="HibernationFixupTable" style="display: none; width: 100%; margin-top: 40px;">
+        <tr id="HF147" class="tr">
+            <td class="center td" style="width: 33%;">
+                <b class="center">1.4.7 (Beta)</b>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/dortania/build-repo/releases/download/HibernationFixup-7b34c05/HibernationFixup-1.4.7-DEBUG.zip"><b>Debug</b></a>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/dortania/build-repo/releases/download/HibernationFixup-7b34c05/HibernationFixup-1.4.7-RELEASE.zip"><b>Release</b></a>
+            </td>
+        </tr>
+        <tr id="HF147" class="tr">
+            <td class="center td" style="width: 33%;">
+                <b class="center">1.4.6 (Stable)</b>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/acidanthera/HibernationFixup/releases/download/1.4.6/HibernationFixup-1.4.6-DEBUG.zip"><b>Debug</b></a>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/acidanthera/HibernationFixup/releases/download/1.4.6/HibernationFixup-1.4.6-RELEASE.zip"><b>Release</b></a>
+            </td>
+        </tr>
+    </table>
+    <table id="IntelBluetoothFirmwareTable" style="display: none; width: 100%; margin-top: 40px;">
+        <tr id="IBF220" class="tr">
+            <td class="center td" style="width: 33%;">
+                <b class="center">2.2.0 (Beta)</b>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/dortania/build-repo/releases/download/IntelBluetoothFirmware-bbdde1f/IntelBluetoothFirmware-2.2.0-DEBUG.zip"><b>Debug</b></a>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/dortania/build-repo/releases/download/IntelBluetoothFirmware-bbdde1f/IntelBluetoothFirmware-2.2.0-RELEASE.zip"><b>Release</b></a>
+            </td>
+        </tr>
+        <tr id="IBF210" class="tr">
+            <td class="center td" style="width: 33%;">
+                <b class="center">2.1.0 (Stable)</b>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/OpenIntelWireless/IntelBluetoothFirmware/releases/download/v2.1.0/IntelBluetoothFirmware-v2.1.0.zip"><b>Stable</b></a>
+            </td>
+        </tr>
+    </table>
+    <table id="IntelMausiTable" style="display: none; width: 100%; margin-top: 40px;">
+        <tr id="IM108" class="tr">
+            <td class="center td" style="width: 33%;">
+                <b class="center">1.0.8 (Beta)</b>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/dortania/build-repo/releases/download/IntelMausi-1582768/IntelMausi-1.0.8-DEBUG.zip"><b>Debug</b></a>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/dortania/build-repo/releases/download/IntelMausi-1582768/IntelMausi-1.0.8-RELEASE.zip"><b>Release</b></a>
+            </td>
+        </tr>
+        <tr id="IM107" class="tr">
+            <td class="center td" style="width: 33%;">
+                <b class="center">1.0.7 (Stable)</b>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/acidanthera/IntelMausi/releases/download/1.0.7/IntelMausi-1.0.7-DEBUG.zip"><b>Debug</b></a>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/acidanthera/IntelMausi/releases/download/1.0.7/IntelMausi-1.0.7-RELEASE.zip"><b>Release</b></a>
+            </td>
+        </tr>
+    </table>
+    <table id="LiluTable" style="display: none; width: 100%; margin-top: 40px;">
+        <tr id="L163" class="tr">
+            <td class="center td" style="width: 33%;">
+                <b class="center">1.6.3 (Beta)</b>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/dortania/build-repo/releases/download/Lilu-75cded6/Lilu-1.6.3-DEBUG.zip"><b>Debug</b></a>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/dortania/build-repo/releases/download/Lilu-75cded6/Lilu-1.6.3-RELEASE.zip"><b>Release</b></a>
+            </td>
+        </tr>
+        <tr id="L162" class="tr">
+            <td class="center td" style="width: 33%;">
+                <b class="center">1.6.2 (Stable)</b>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/acidanthera/Lilu/releases/download/1.6.2/Lilu-1.6.2-DEBUG.zip"><b>Debug</b></a>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/acidanthera/Lilu/releases/download/1.6.2/Lilu-1.6.2-RELEASE.zip"><b>Release</b></a>
+            </td>
+        </tr>
+    </table>
+    <table id="MacHyperVSupportTable" style="display: none; width: 100%; margin-top: 40px;">
+        <tr id="MHVS091" class="tr">
+            <td class="center td" style="width: 33%;">
+                <b class="center">0.9.1 (Beta)</b>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/dortania/build-repo/releases/download/MacHyperVSupport-ccf8c2b/MacHyperVSupport-0.9.1-DEBUG.zip"><b>Debug</b></a>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/dortania/build-repo/releases/download/MacHyperVSupport-ccf8c2b/MacHyperVSupport-0.9.1-RELEASE.zip"><b>Release</b></a>
+            </td>
+        </tr>
+        <tr id="MHVS09" class="tr">
+            <td class="center td" style="width: 33%;">
+                <b class="center">0.9 (Stable)</b>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/acidanthera/MacHyperVSupport/releases/download/0.9/MacHyperVSupport-0.9-DEBUG.zip"><b>Debug</b></a>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/acidanthera/MacHyperVSupport/releases/download/0.9/MacHyperVSupport-0.9-RELEASE.zip"><b>Release</b></a>
+            </td>
+        </tr>
+    </table>
+    <table id="NVMeFixTable" style="display: none; width: 100%; margin-top: 40px;">
+        <tr id="NF111" class="tr">
+            <td class="center td" style="width: 33%;">
+                <b class="center">1.1.1 (Beta)</b>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/dortania/build-repo/releases/download/NVMeFix-b49dcb3/NVMeFix-1.1.1-DEBUG.zip"><b>Debug</b></a>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/dortania/build-repo/releases/download/NVMeFix-b49dcb3/NVMeFix-1.1.1-RELEASE.zip"><b>Release</b></a>
+            </td>
+        </tr>
+        <tr id="NF110" class="tr">
+            <td class="center td" style="width: 33%;">
+                <b class="center">1.1.0 (Stable)</b>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/acidanthera/NVMeFix/releases/download/1.1.0/NVMeFix-1.1.0-DEBUG.zip"><b>Debug</b></a>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/acidanthera/NVMeFix/releases/download/1.1.0/NVMeFix-1.1.0-RELEASE.zip"><b>Release</b></a>
+            </td>
+        </tr>
+    </table>
+    <table id="NoTouchIDTable" style="display: none; width: 100%; margin-top: 40px;">
+        <tr id="NTI104" class="tr">
+            <td class="center td" style="width: 33%;">
+                <b class="center">1.0.4 (Beta)</b>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/dortania/build-repo/releases/download/NoTouchID-9010c9e/NoTouchID-1.0.4-DEBUG.zip"><b>Debug</b></a>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/dortania/build-repo/releases/download/NoTouchID-9010c9e/NoTouchID-1.0.4-RELEASE.zip"><b>Release</b></a>
+            </td>
+        </tr>
+        <tr id="NTI103" class="tr">
+            <td class="center td" style="width: 33%;">
+                <b class="center">1.0.3 (Stable)</b>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/al3xtjames/NoTouchID/releases/download/1.0.3/NoTouchID-1.0.3-RELEASE.zip"><b>Release</b></a>
+            </td>
+        </tr>
+    </table>
+    <table id="RTCMemoryFixupTable" style="display: none; width: 100%; margin-top: 40px;">
+        <tr id="RMF108" class="tr">
+            <td class="center td" style="width: 33%;">
+                <b class="center">1.0.8 (Beta)</b>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/dortania/build-repo/releases/download/RTCMemoryFixup-93ac54e/RTCMemoryFixup-1.0.8-DEBUG.zip"><b>Debug</b></a>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/dortania/build-repo/releases/download/RTCMemoryFixup-93ac54e/RTCMemoryFixup-1.0.8-RELEASE.zip"><b>Release</b></a>
+            </td>
+        </tr>
+        <tr id="RMF107" class="tr">
+            <td class="center td" style="width: 33%;">
+                <b class="center">1.0.7 (Stable)</b>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/acidanthera/RTCMemoryFixup/releases/download/1.0.7/RTCMemoryFixup-1.0.7-DEBUG.zip"><b>Debug</b></a>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/acidanthera/RTCMemoryFixup/releases/download/1.0.7/RTCMemoryFixup-1.0.7-RELEASE.zip"><b>Release</b></a>
+            </td>
+        </tr>
+    </table>
+    <table id="RealtekRTL8111Table" style="display: none; width: 100%; margin-top: 40px;">
+        <tr id="RR8242" class="tr">
+            <td class="center td" style="width: 33%;">
+                <b class="center">2.4.2 (Stable)</b>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/Mieze/RTL8111_driver_for_OS_X/releases/download/2.4.2/RealtekRTL8111-V2.4.2.zip"><b>Stable</b></a>
+            </td>
+        </tr>
+        <tr id="RR8240" class="tr">
+            <td class="center td" style="width: 33%;">
+                <b class="center">2.4.0 (Stable)</b>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/Mieze/RTL8111_driver_for_OS_X/releases/download/V2.4.0/RealtekRTL8111-V2.4.0.zip"><b>Stable</b></a>
+            </td>
+        </tr>
+    </table>
+    <table id="RestrictEventsTable" style="display: none; width: 100%; margin-top: 40px;">
+        <tr id="RE109" class="tr">
+            <td class="center td" style="width: 33%;">
+                <b class="center">1.0.9 (Beta)</b>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/dortania/build-repo/releases/download/RestrictEvents-c82a5dc/RestrictEvents-1.0.9-DEBUG.zip"><b>Debug</b></a>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/dortania/build-repo/releases/download/RestrictEvents-c82a5dc/RestrictEvents-1.0.9-RELEASE.zip"><b>Release</b></a>
+            </td>
+        </tr>
+        <tr id="RE108" class="tr">
+            <td class="center td" style="width: 33%;">
+                <b class="center">1.0.8 (Stable)</b>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/acidanthera/RestrictEvents/releases/download/1.0.8/RestrictEvents-1.0.8-DEBUG.zip"><b>Debug</b></a>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/acidanthera/RestrictEvents/releases/download/1.0.8/RestrictEvents-1.0.8-RELEASE.zip"><b>Release</b></a>
+            </td>
+        </tr>
+    </table>
+    <table id="UEFIGraphicsFBTable" style="display: none; width: 100%; margin-top: 40px;">
+        <tr id="UGF101" class="tr">
+            <td class="center td" style="width: 33%;">
+                <b class="center">1.0.1 (Beta)</b>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/dortania/build-repo/releases/download/UEFIGraphicsFB-8be99d8/UEFIGraphicsFB-1.0.1-DEBUG.zip"><b>Debug</b></a>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/dortania/build-repo/releases/download/UEFIGraphicsFB-8be99d8/UEFIGraphicsFB-1.0.1-RELEASE.zip"><b>Release</b></a>
+            </td>
+        </tr>
+        <tr id="UGF100" class="tr">
+            <td class="center td" style="width: 33%;">
+                <b class="center">1.0.0 (Stable)</b>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/acidanthera/UEFIGraphicsFB/releases/download/1.0.0/UEFIGraphicsFB-1.0.0-DEBUG.zip"><b>Debug</b></a>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/acidanthera/UEFIGraphicsFB/releases/download/1.0.0/UEFIGraphicsFB-1.0.0-RELEASE.zip"><b>Release</b></a>
+            </td>
+        </tr>
+    </table>
+    <table id="VirtualSMCTable" style="display: none; width: 100%; margin-top: 40px;">
+        <tr id="VS131" class="tr">
+            <td class="center td" style="width: 33%;">
+                <b class="center">1.3.1 (Beta)</b>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/dortania/build-repo/releases/download/VirtualSMC-8623634/VirtualSMC-1.3.1-DEBUG.zip"><b>Debug</b></a>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/dortania/build-repo/releases/download/VirtualSMC-8623634/VirtualSMC-1.3.1-RELEASE.zip"><b>Release</b></a>
+            </td>
+        </tr>
+        <tr id="VS130" class="tr">
+            <td class="center td" style="width: 33%;">
+                <b class="center">1.3.0 (Stable)</b>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/acidanthera/VirtualSMC/releases/download/1.3.0/VirtualSMC-1.3.0-DEBUG.zip"><b>Debug</b></a>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/acidanthera/VirtualSMC/releases/download/1.3.0/VirtualSMC-1.3.0-RELEASE.zip"><b>Release</b></a>
+            </td>
+        </tr>
+    </table>
+    <table id="VoodooI2CTable" style="display: none; width: 100%; margin-top: 40px;">
+        <tr id="VI227" class="tr">
+            <td class="center td" style="width: 33%;">
+                <b class="center">2.7 (Stable)</b>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/VoodooI2C/VoodooI2C/releases/download/2.7/VoodooI2C-2.7.zip"><b>Stable</b></a>
+            </td>
+        </tr>
+        <tr id="VI2265" class="tr">
+            <td class="center td" style="width: 33%;">
+                <b class="center">2.6.5 (Stable)</b>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/VoodooI2C/VoodooI2C/releases/download/2.6.5/VoodooI2C-2.6.5.zip"><b>Stable</b></a>
+            </td>
+        </tr>
+    </table>
+    <table id="VoodooInputTable" style="display: none; width: 100%; margin-top: 40px;">
+        <tr id="VI113" class="tr">
+            <td class="center td" style="width: 33%;">
+                <b class="center">1.1.3 (Beta)</b>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/dortania/build-repo/releases/download/VoodooInput-56dcdf9/VoodooInput-1.1.3-DEBUG.zip"><b>Debug</b></a>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/dortania/build-repo/releases/download/VoodooInput-56dcdf9/VoodooInput-1.1.3-RELEASE.zip"><b>Release</b></a>
+            </td>
+        </tr>
+        <tr id="VI112" class="tr">
+            <td class="center td" style="width: 33%;">
+                <b class="center">1.1.2 (Stable)</b>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/acidanthera/VoodooInput/releases/download/1.1.2/VoodooInput-1.1.2-DEBUG.zip"><b>Debug</b></a>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/acidanthera/VoodooInput/releases/download/1.1.2/VoodooInput-1.1.2-RELEASE.zip"><b>Release</b></a>
+            </td>
+        </tr>
+    </table>
+    <table id="VoodooPS2Table" style="display: none; width: 100%; margin-top: 40px;">
+        <tr id="VP2230" class="tr">
+            <td class="center td" style="width: 33%;">
+                <b class="center">2.3.0 (Beta)</b>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/dortania/build-repo/releases/download/VoodooPS2-4d8fd01/VoodooPS2Controller-2.3.0-DEBUG.zip"><b>Debug</b></a>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/dortania/build-repo/releases/download/VoodooPS2-4d8fd01/VoodooPS2Controller-2.3.0-RELEASE.zip"><b>Release</b></a>
+            </td>
+        </tr>
+        <tr id="VP2229" class="tr">
+            <td class="center td" style="width: 33%;">
+                <b class="center">2.2.9 (Stable)</b>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/acidanthera/VoodooPS2/releases/download/2.2.9/VoodooPS2Controller-2.2.9-DEBUG.zip"><b>Debug</b></a>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/acidanthera/VoodooPS2/releases/download/2.2.9/VoodooPS2Controller-2.2.9-RELEASE.zip"><b>Release</b></a>
+            </td>
+        </tr>
+    </table>
+    <table id="VoodooPS2-AlpsTable" style="display: none; width: 100%; margin-top: 40px;">
+        <tr id="VP2A10" class="tr">
+            <td class="center td" style="width: 33%;">
+                <b class="center">1.0 (Stable)</b>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/1Revenger1/VoodooPS2-Alps/releases/download/1.0/VoodooPS2-Alps-Debug.zip"><b>Debug</b></a>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/1Revenger1/VoodooPS2-Alps/releases/download/1.0/VoodooPS2-Alps-Release.zip"><b>Release</b></a>
+            </td>
+        </tr>
+        </tr>
+    </table>
+    <table id="VoodooRMITable" style="display: none; width: 100%; margin-top: 40px;">
+        <tr id="VR135" class="tr">
+            <td class="center td" style="width: 33%;">
+                <b class="center">1.3.5 (Beta)</b>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/dortania/build-repo/releases/download/VoodooRMI-998761a/VoodooRMI-1.3.5-DEBUG.zip"><b>Debug</b></a>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/dortania/build-repo/releases/download/VoodooRMI-998761a/VoodooRMI-1.3.5-RELEASE.zip"><b>Release</b></a>
+            </td>
+        </tr>
+        <tr id="VR134" class="tr">
+            <td class="center td" style="width: 33%;">
+                <b class="center">1.3.4 (Stable)</b>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/VoodooSMBus/VoodooRMI/releases/download/1.3.4/VoodooRMI-1.3.4-DEBUG.zip"><b>Debug</b></a>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/VoodooSMBus/VoodooRMI/releases/download/1.3.4/VoodooRMI-1.3.4-RELEASE.zip"><b>Release</b></a>
+            </td>
+        </tr>
+    </table>
+    <table id="WhateverGreenTable" style="display: none; width: 100%; margin-top: 40px;">
+        <tr id="WEG162" class="tr">
+            <td class="center td" style="width: 33%;">
+                <b class="center">1.6.2 (Beta)</b>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/dortania/build-repo/releases/download/WhateverGreen-fcee851/WhateverGreen-1.6.2-DEBUG.zip"><b>Debug</b></a>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/dortania/build-repo/releases/download/WhateverGreen-fcee851/WhateverGreen-1.6.2-RELEASE.zip"><b>Release</b></a>
+            </td>
+        </tr>
+        <tr id="WEG161" class="tr">
+            <td class="center td" style="width: 33%;">
+                <b class="center">1.6.1 (Stable)</b>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/acidanthera/WhateverGreen/releases/download/1.6.1/WhateverGreen-1.6.1-DEBUG.zip"><b>Debug</b></a>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/acidanthera/WhateverGreen/releases/download/1.6.1/WhateverGreen-1.6.1-RELEASE.zip"><b>Release</b></a>
+            </td>
+        </tr>
+    </table>
+    <table id="OpenCorePkgTable" style="display: none; width: 100%; margin-top: 40px;">
+        <tr id="OCP084" class="tr">
+            <td class="center td" style="width: 33%;">
+                <b class="center">0.8.4 (Beta)</b>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/dortania/build-repo/releases/download/OpenCorePkg-d40fe9a/OpenCore-0.8.4-DEBUG.zip"><b>Debug</b></a>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/dortania/build-repo/releases/download/OpenCorePkg-d40fe9a/OpenCore-0.8.4-RELEASE.zip"><b>Release</b></a>
+            </td>
+        </tr>
+        <tr id="OCP083" class="tr">
+            <td class="center td" style="width: 33%;">
+                <b class="center">0.8.3 (Stable)</b>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/acidanthera/OpenCorePkg/releases/download/0.8.3/OpenCore-0.8.3-DEBUG.zip"><b>Debug</b></a>
+            </td>
+            <td class="center td" style="width: 33%;">
+                <a href="https://github.com/acidanthera/OpenCorePkg/releases/download/0.8.3/OpenCore-0.8.3-RELEASE.zip"><b>Release</b></a>
+            </td>
+        </tr>
+    </table>
+    <script src="./src/js/main.js"></script>
+    <footer id="footer">A version is not listed you need? Request it under <b>Help > GitHub </b> or <b>Help > Discord !</b></footer>
+</body>
+</html>

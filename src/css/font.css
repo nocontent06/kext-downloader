@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'Roboto-Medium';
+    src: url('./font/roboto/Roboto-Medium.ttf');
+  }
+
+@font-face {
+    font-family: Icon;
+    src: url("./font/Icon/iconbrew.ttf");
+}
+
+body{
+    font-family: Roboto-Medium;
+}
